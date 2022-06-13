@@ -1,0 +1,46 @@
+.userContainer {
+  width: 80%;
+}
+.userListContainer {
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 80%;
+  overflow: scroll;
+}
+.userListItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0px 8px;
+  color: #757575;
+  cursor: pointer;
+}
+.userListColumn {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  /* overflow: auto; */
+}
+.userListColumnTitle {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0px 8px;
+  color: #757575;
+  cursor: pointer;
+}
+.userListNode {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0px 8px;
+  color: #111111;
+  cursor: pointer;
+}

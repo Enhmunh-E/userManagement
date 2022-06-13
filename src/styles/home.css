@@ -1,0 +1,16 @@
+.listColumnAdd {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0px 8px;
+  color: #1a73e8;
+  cursor: pointer;
+  font-weight: 600;
+}
+.errorMessage {
+  color: #f44336;
+  font-size: 14px;
+  margin-top: 5px;
+}

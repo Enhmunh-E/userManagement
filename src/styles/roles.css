@@ -1,0 +1,118 @@
+.roleContainer {
+  display: flex;
+  flex-direction: row;
+  width: 80%;
+  font-size: 14px;
+  color: #757575;
+}
+.roleBar {
+  width: 30%;
+  height: 100%;
+  overflow-y: scroll;
+}
+.roleBarItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 300px; */
+  height: 32px;
+  padding: 0px 8px;
+  /* make mouse pointer */
+  color: #757575;
+  cursor: pointer;
+}
+.roleBarItem:hover {
+  background-color: #f0f0f0;
+  color: black;
+}
+.selectedBar {
+  background-color: #f0f0f0;
+  color: black;
+}
+.addRole {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+  height: 32px;
+  padding: 0px 8px;
+  color: #1a73e8;
+  cursor: pointer;
+  font-weight: 600;
+}
+.roleName {
+  color: black;
+}
+.roleValueName,
+.roleTypeName {
+  font-size: 14px;
+  color: #757575;
+}
+
+.roleValueNameInput {
+  width: 100px;
+  margin-left: 10px;
+  margin-right: 10px;
+  border: 1px solid #757575;
+  border-radius: 4px;
+  padding: 0px 4px;
+  font-size: 14px;
+  color: black;
+  outline: none;
+}
+.roleItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  /* width: 300px; */
+  height: 32px;
+  padding: 0px 8px;
+  /* make mouse pointer */
+  color: #757575;
+  cursor: pointer;
+}
+.addNewRole {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  /* justify-content: space-between; */
+  height: 32px;
+  padding: 0px 8px;
+  color: #1a73e8;
+  cursor: pointer;
+  font-weight: 600;
+}
+.addNewRoleDisabled {
+  color: #757575;
+}
+.permissionContainer {
+  color: black;
+}
+.roleValue {
+  color: black;
+}
+h1 {
+  color: black;
+}
+.roleSaveButton {
+  color: #1a73e8;
+  font-weight: 600;
+  margin: 8px 16px;
+  border: 2px solid #1a73e8;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2px 4px;
+  border-radius: 8px;
+  width: 100px;
+}
+.disabledButton {
+  cursor: default;
+  color: #757575;
+  border-color: #757575;
+}
+.rightRole {
+  margin: 16px;
+}

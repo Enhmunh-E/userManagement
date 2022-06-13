@@ -1,38 +1,139 @@
-.App {
-  text-align: center;
+body {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#root {
+  margin: 0;
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: row;
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+* {
+  box-sizing: border-box;
 }
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.listColumn {
   display: flex;
   flex-direction: column;
+  min-width: 300px;
+  border-right: #f5f5f5 solid 1px;
+  color: #444;
+}
+.listContainer {
+  display: flex;
+  flex-direction: row;
+  overflow-x: scroll;
+  height: 80%;
+  margin: 32px;
+  scroll-behavior: smooth;
+}
+.listItem {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  height: 32px;
+  padding: 0px 8px;
+  cursor: pointer;
+}
+.rightArrow {
+  opacity: 1;
+}
+.listItem:hover {
+  background-color: #f0f0f0;
+}
+.listItemSelected {
+  background-color: #f0f0f0;
+  color: #444;
+  font-weight: 600;
+}
+.row {
+  display: flex;
+  flex-direction: row;
+}
+.col {
+  display: flex;
+  flex-direction: column;
+}
+.userItem {
+  min-width: 300px;
+  padding: 0px 8px;
+  position: relative;
+}
+.label {
+  font-size: 16px;
+  color: #666;
+}
+.labelValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #444;
+  margin-left: 8px;
+}
+.editModal {
+  display: flex;
+  flex-direction: column;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  z-index: 100;
+  width: 100%;
+  height: 100%;
+  background-color: #fafafa;
+}
+.pointer {
+  cursor: pointer;
+}
+p {
+  margin: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+.listItemID {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  display: flex;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
 }
-
-.App-link {
-  color: #61dafb;
+.container {
+  width: 100%;
+  height: 100vh;
 }
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.button {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0px 8px;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 600;
+  background: #1a73e8;
+  border-radius: 8px;
+  margin-top: 16px;
+}
+.userEditDeleteButton {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  height: 32px;
+  padding: 0px 12px;
+  color: #1a73e8;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 14px;
+  border-radius: 8px;
+  margin-top: 16px;
+  margin-right: 16px;
+}
+.deleteButton {
+  color: red;
 }

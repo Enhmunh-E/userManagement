@@ -1,25 +1,16 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from "react";
+import * as _ from "lodash";
+import "./App.css";
+import { Provider } from "./providers/Provider";
+import { BrowserRouter, Route, Router } from "react-router-dom";
+import { RolesPage, HomePage } from "./pages";
+import { SideBar } from "./components/SideBar";
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div>
+      <SideBar />
     </div>
   );
-}
+};
 
 export default App;
