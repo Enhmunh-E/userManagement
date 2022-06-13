@@ -41,13 +41,14 @@ You can Delete our user on HomePage and AllUsers page.
   - On HomePage go to the user who you want to delete and there will be Delete Button
   - On AllUsers Page search the user that you want to delete and there will be DeleteIcon on the right side of your user.
 
-### Things To Note
+# Things To Note
 
 ## How Our User Permission Works
 
 Our User Permission works by getting all the permissions from the groups where our user residies in and our role permissiions. Using `OR` function.
-	
-	
-	
+
+## Not very responsive
+
+Recommended for desktop use only. Minimum 500px of width needed.
 
 Made By `Emu` on 13th Of June for Intern Home Assignment @NestAcademy
