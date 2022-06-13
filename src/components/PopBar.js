@@ -11,3 +11,4 @@ export const PopBar = ({ visible, setVisible, children }) => {
     </div>
   );
 };
+export default PopBar;

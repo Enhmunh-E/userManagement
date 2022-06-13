@@ -1,7 +1,9 @@
 import React, { useState, useContext, useMemo } from "react";
 import { doc, updateDoc, deleteDoc } from "firebase/firestore";
+
 import { db } from "../firebase-config";
 import { Context } from "../providers/Provider";
+
 export const UserItem = ({ data }) => {
   const { roles, groups, permissionTypes } = useContext(Context);
   const [isEditing, setIsEditing] = useState(false);
@@ -119,3 +121,5 @@ export const UserItem = ({ data }) => {
     </div>
   );
 };
+
+export default UserItem;

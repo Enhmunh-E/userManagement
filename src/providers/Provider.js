@@ -1,6 +1,8 @@
 import React, { createContext, useEffect, useState } from "react";
-import { db } from "../firebase-config";
 import { collection, onSnapshot } from "firebase/firestore";
+
+import { db } from "../firebase-config";
+
 export const Context = createContext({
   users: [],
   roles: [],
@@ -15,6 +17,7 @@ export const Provider = ({ children }) => {
   const [roles, setRoles] = useState([]);
   const [groups, setGroups] = useState([]);
   const permissionTypes = ["canCreate", "canRead", "canUpdate", "canDelete"];
+
   useEffect(() => {
     onSnapshot(usersCollectionRef, (snap) => {
       setUsers(
@@ -42,6 +45,7 @@ export const Provider = ({ children }) => {
       );
     });
   }, []);
+
   return (
     <Context.Provider value={{ users, roles, permissionTypes, groups }}>
       {children}

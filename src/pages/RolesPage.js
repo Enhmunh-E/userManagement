@@ -1,13 +1,21 @@
 import React, { useMemo, useState, useContext } from "react";
-import { PopBar } from "../components/PopBar";
-import { Context } from "../providers/Provider";
-import Plus from "../assets/Plus.svg";
-import _ from "lodash";
 import { setDoc, doc, updateDoc } from "firebase/firestore";
-import "../styles/roles.css";
+import _ from "lodash";
+
 import { db } from "../firebase-config";
+import { Context } from "../providers/Provider";
+import { PopBar } from "../components";
+
+import Plus from "../assets/Plus.svg";
+import "../styles/roles.css";
+
 export const RolesPage = () => {
   const { roles, permissionTypes } = useContext(Context);
+  const [selected, setSelected] = useState("");
+  const [isEditing, setIsEditing] = useState(false);
+  const [newRoleName, setNewRoleName] = useState("");
+  const [permissions, setPermissions] = useState({});
+
   const rolesObj = useMemo(() => {
     let obj = {};
     roles.forEach((role) => {
@@ -15,10 +23,7 @@ export const RolesPage = () => {
     });
     return obj;
   }, [roles]);
-  const [selected, setSelected] = useState("");
-  const [isEditing, setIsEditing] = useState(false);
-  const [newRoleName, setNewRoleName] = useState("");
-  const [permissions, setPermissions] = useState({});
+
   const newRole = useMemo(() => {
     let obj = {};
     obj.name = newRoleName;
@@ -147,6 +152,7 @@ export const RolesPage = () => {
     </div>
   );
 };
+
 const Permissions = ({ permissions, roleId }) => {
   const { permissionTypes } = useContext(Context);
   const [newPermissions, setNewPermissions] = useState(() => {
@@ -215,4 +221,5 @@ const Permissions = ({ permissions, roleId }) => {
     </div>
   );
 };
+
 export default RolesPage;

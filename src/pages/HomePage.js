@@ -1,9 +1,6 @@
 import React, { useContext, useState, useEffect, useMemo, useRef } from "react";
-import { Context } from "../providers/Provider";
-import { UserItem, ListItem } from "../components";
 import * as _ from "lodash";
-import { PopBar } from "../components/PopBar";
-import "../styles/home.css";
+
 import {
   addDoc,
   collection,
@@ -12,7 +9,12 @@ import {
   setDoc,
   updateDoc,
 } from "firebase/firestore";
+
 import { db } from "../firebase-config";
+import { Context } from "../providers/Provider";
+import { UserItem, ListItem, PopBar } from "../components";
+import "../styles/home.css";
+
 export const HomePage = () => {
   const { users: arrayOfUsers, roles, permissionTypes } = useContext(Context);
   const [modalOpen, setModalOpen] = useState(false);
@@ -47,6 +49,8 @@ export const HomePage = () => {
     }
     return perm;
   });
+  const [errorMessage, setErrorMessage] = useState("");
+
   const userList = useMemo(() => {
     let obj = {};
     arrayOfUsers.forEach((user) => {
@@ -66,6 +70,7 @@ export const HomePage = () => {
     });
     return c;
   }, [path]);
+
   const getData = (path) => {
     let data = _.get(userList, path);
     return data;
@@ -90,10 +95,11 @@ export const HomePage = () => {
     ]);
     setNewGroupName("");
   };
-  const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     endRef.current.scrollIntoView({ behavior: "smooth" });
   }, [cols]);
+
   return (
     <div
       style={{
@@ -318,6 +324,7 @@ export const HomePage = () => {
     </div>
   );
 };
+
 const GroupPermissions = ({ path }) => {
   const groupRef = doc(db, "groups", path);
   const { permissionTypes } = useContext(Context);

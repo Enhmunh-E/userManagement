@@ -104,4 +104,5 @@ export const AllUsersPage = () => {
     </div>
   );
 };
+
 export default AllUsersPage;
