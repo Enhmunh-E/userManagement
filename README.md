@@ -46,7 +46,8 @@ You can Delete our user on HomePage and AllUsers page.
 ## How Our User Permission Works
 
 Our User Permission works by getting all the permissions from the groups where our user residies in and our role permissiions. Using `OR` function.
+	
+	
+	
 
-
-
-Made By Emu on 13th Of June for Intern Home Assignment @NestAcademy
+Made By `Emu` on 13th Of June for Intern Home Assignment @NestAcademy
