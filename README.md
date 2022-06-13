@@ -2,23 +2,16 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-### How to Run This WebApp
+## How to Run This WebApp
 
 In the project directory:
 1. Install dependencies by running `yarn i`
 2. Run our WebApp by runing `yarn start`
-
-### `npm start`
-
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
-
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+3. Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
 
 # About This APP
 
-This app has 3 sections
+This app has 3 pages
  - Home Page which contains user structure with group
  - Roles Page which here you can create any roles with 4 kinds of permissions
  - All Users Page where you can search any user from our users
@@ -51,4 +44,4 @@ Our User Permission works by getting all the permissions from the groups where o
 
 Recommended for desktop use only. Minimum 500px of width needed.
 
-Made By `Emu` on 13th Of June for Intern Home Assignment @NestAcademy
+Made By `Emu` on 13th Of June 2022 for Intern Home Assignment @NestAcademy
