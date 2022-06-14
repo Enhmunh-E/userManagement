@@ -3,11 +3,13 @@ import { doc, updateDoc, deleteDoc } from "firebase/firestore";
 
 import { db } from "../firebase-config";
 import { Context } from "../providers/Provider";
+import validValues from "../utils/inputChecker";
 
 export const UserItem = ({ data }) => {
   const { roles, groups, permissionTypes } = useContext(Context);
   const [isEditing, setIsEditing] = useState(false);
   const [values, setValues] = useState(data);
+  const [errorMessage, setErrorMessage] = useState("");
   const docRef = doc(db, "users", data.id);
   const permissionFromAncestor = useMemo(() => {
     const path = data.path.split(".").splice(1);
@@ -32,6 +34,11 @@ export const UserItem = ({ data }) => {
     return perms;
   }, [data, permissionTypes, roles, groups]);
   const save = async () => {
+    let errMessage = validValues(values);
+    if (errMessage !== null) {
+      setErrorMessage(errMessage);
+      return;
+    }
     if (data != values) {
       await updateDoc(docRef, values);
     }
@@ -77,6 +84,7 @@ export const UserItem = ({ data }) => {
                   <select
                     value={values[key]}
                     onChange={(e) => {
+                      setErrorMessage("");
                       setValues({ ...values, [key]: e.target.value });
                     }}
                   >
@@ -91,6 +99,7 @@ export const UserItem = ({ data }) => {
                     value={values[key]}
                     type={key === "phoneNumber" ? "number" : "text"}
                     onChange={(e) => {
+                      setErrorMessage("");
                       setValues({ ...values, [key]: e.target.value });
                     }}
                   />
@@ -98,6 +107,12 @@ export const UserItem = ({ data }) => {
               </div>
             );
           })}
+          {errorMessage != "" && (
+            <div className="row">
+              <div className="label">Error: </div>
+              <div className="labelValue">{errorMessage}</div>
+            </div>
+          )}
           <div className="button pointer" onClick={save}>
             Save
           </div>

@@ -1,7 +1,8 @@
-import React, { createContext, useEffect, useState } from "react";
-import { collection, onSnapshot } from "firebase/firestore";
+import React, { createContext } from "react";
+import { collection } from "firebase/firestore";
 
 import { db } from "../firebase-config";
+import { useCollection } from "../utils/useCollection";
 
 export const Context = createContext({
   users: [],
@@ -13,39 +14,11 @@ export const Context = createContext({
 export const Provider = ({ children }) => {
   const usersCollectionRef = collection(db, "users");
   const rolesCollectionRef = collection(db, "roles");
-  const [users, setUsers] = useState([]);
-  const [roles, setRoles] = useState([]);
-  const [groups, setGroups] = useState([]);
+  const groupsCollectionRef = collection(db, "groups");
+  const users = useCollection(usersCollectionRef);
+  const groups = useCollection(groupsCollectionRef);
+  const roles = useCollection(rolesCollectionRef);
   const permissionTypes = ["canCreate", "canRead", "canUpdate", "canDelete"];
-
-  useEffect(() => {
-    onSnapshot(usersCollectionRef, (snap) => {
-      setUsers(
-        snap.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        })
-      );
-    });
-  }, []);
-  useEffect(() => {
-    onSnapshot(rolesCollectionRef, (snap) => {
-      setRoles(
-        snap.docs.map((doc) => {
-          return { firestoreId: doc.id, ...doc.data() };
-        })
-      );
-    });
-  }, []);
-  useEffect(() => {
-    onSnapshot(collection(db, "groups"), (snap) => {
-      setGroups(
-        snap.docs.map((doc) => {
-          return { id: doc.id, ...doc.data() };
-        })
-      );
-    });
-  }, []);
-
   return (
     <Context.Provider value={{ users, roles, permissionTypes, groups }}>
       {children}
