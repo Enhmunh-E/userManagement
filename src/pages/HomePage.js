@@ -1,19 +1,13 @@
 import React, { useContext, useState, useEffect, useMemo, useRef } from "react";
 import * as _ from "lodash";
 
-import {
-  addDoc,
-  collection,
-  doc,
-  onSnapshot,
-  setDoc,
-  updateDoc,
-} from "firebase/firestore";
+import { addDoc, collection, doc, setDoc } from "firebase/firestore";
 
 import { db } from "../firebase-config";
 import { Context } from "../providers/Provider";
-import { UserItem, ListItem, PopBar } from "../components";
+import { UserItem, ListItem, PopBar, GroupPermissions } from "../components";
 import "../styles/home.css";
+import validValues from "../utils/inputChecker";
 
 export const HomePage = () => {
   const { users: arrayOfUsers, roles, permissionTypes } = useContext(Context);
@@ -99,7 +93,6 @@ export const HomePage = () => {
   useEffect(() => {
     endRef.current.scrollIntoView({ behavior: "smooth" });
   }, [cols]);
-
   return (
     <div
       style={{
@@ -132,9 +125,9 @@ export const HomePage = () => {
             <div>
               <label>Permissions:</label>
               <div>
-                {permissionTypes.map((permission) => {
+                {permissionTypes.map((permission, index) => {
                   return (
-                    <div>
+                    <div key={"permission" + index}>
                       <input
                         type="checkbox"
                         checked={newGroupPermissions[permission]}
@@ -193,6 +186,7 @@ export const HomePage = () => {
                 setErrorMessage("");
               }}
             >
+              <option value="">--Select Role--</option>
               {roles.map((role) => {
                 return <option key={role.name}>{role.name}</option>;
               })}
@@ -218,6 +212,11 @@ export const HomePage = () => {
               });
               if (newUserRole == "") {
                 setErrorMessage("Please select a role");
+                error = true;
+              }
+              let errMessage = validValues(obj);
+              if (errMessage) {
+                setErrorMessage(errMessage);
                 error = true;
               }
               if (error) return;
@@ -325,83 +324,4 @@ export const HomePage = () => {
   );
 };
 
-const GroupPermissions = ({ path }) => {
-  const groupRef = doc(db, "groups", path);
-  const { permissionTypes } = useContext(Context);
-  const [groupPermission, setGroupPermission] = useState(null);
-  const [editedPermission, setEditedPermission] = useState(null);
-  const [isEditing, setIsEditing] = useState(false);
-  useEffect(() => {
-    onSnapshot(groupRef, (doc) => {
-      let perm = {};
-      for (let i = 0; i < permissionTypes.length; i++) {
-        perm[permissionTypes[i]] = false;
-      }
-      if (doc.exists) {
-        let permarr = doc.data().permissions;
-        if (permarr) {
-          permarr.forEach((permission) => {
-            perm[permission] = true;
-          });
-        }
-        setGroupPermission(perm);
-        setEditedPermission(perm);
-      }
-    });
-  }, []);
-  return (
-    <div>
-      <h3>GroupPermissions:</h3>
-      <div>
-        {permissionTypes.map((permission, index) => {
-          return (
-            <div key={index}>
-              <label>{permission}:</label>
-              <input
-                type="checkbox"
-                disabled={!isEditing}
-                checked={
-                  editedPermission ? editedPermission[permission] : false
-                }
-                onChange={(e) => {
-                  setEditedPermission({
-                    ...editedPermission,
-                    [permission]: e.target.checked,
-                  });
-                }}
-              />
-            </div>
-          );
-        })}
-        {isEditing ? (
-          <div
-            className="pointer button"
-            onClick={() => {
-              setIsEditing(false);
-              if (_.isEqual(groupPermission, editedPermission)) return;
-              let perm = [];
-              for (let i = 0; i < permissionTypes.length; i++) {
-                if (editedPermission[permissionTypes[i]]) {
-                  perm.push(permissionTypes[i]);
-                }
-              }
-              updateDoc(groupRef, { permissions: perm });
-            }}
-          >
-            Save
-          </div>
-        ) : (
-          <div
-            className="pointer"
-            onClick={() => {
-              setIsEditing(true);
-            }}
-          >
-            Edit
-          </div>
-        )}
-      </div>
-    </div>
-  );
-};
 export default HomePage;
